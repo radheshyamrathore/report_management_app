@@ -39,12 +39,14 @@ The app includes filtering and pagination functionality, allowing reports to be 
 
 #### 1. Clone the Repository:
 
-```bash
+```
 git clone https://github.com/radheshyamrathore/report_management_app.git
 cd report_management_app
+```
 
-#### 1. Install Ruby And Rails Dependencies:
-
-```bash
+#### 2. Install Ruby and Rails Dependencies:
+```
 bundle install
+```
+
 
