@@ -33,6 +33,9 @@ The app includes filtering and pagination functionality, allowing reports to be 
 - Ruby (version 3.2.6)
 - Rails (version 8.0.2)
 - PostgreSQL
+- Redis (for Sidekiq)
+- Node.js and Yarn
+
 - Node.js and Yarn
 
 ### Steps to Set Up
@@ -58,13 +61,23 @@ rails db:seed  # This will populate the database with sample data
 ```
 yarn install
 ```
-#### 5. Start rails server:
+#### 5. Start Redis (required for Sidekiq)
+```
+sudo apt install redis-server
+
+sudo service redis-server start
+
+```
+#### 6. Start Sidekiq (in a separate terminal window)
+```
+bundle exec sidekiq
+```
+
+#### 6. Start rails server:
 ```
 rails s
 ```
 Now visit [http://localhost:3000](http://localhost:3000) in your browser to see the application in action.
-
-
 
 
 
