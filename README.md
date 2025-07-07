@@ -22,7 +22,6 @@ The app includes filtering and pagination functionality, allowing reports to be 
 - **Sidekiq:** For background jobs
 - **ActiveStorage:** For uploading report logos
 - **Kaminari Gem:** For paginating report lists
-- **TinyMCE:** For HTML editing
 - **Bootstrap 5:** For responsive layout
 - **jQuery:** For frontend interactions
 
