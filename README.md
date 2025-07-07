@@ -48,5 +48,23 @@ cd report_management_app
 ```
 bundle install
 ```
+### 3. Setup Database
+```
+rails db:create
+rails db:migrate
+rails db:seed  # This will populate the database with sample data
+```
+### 4. Install JavaScript Dependencies:
+```
+yarn install
+```
+#### 5. Start rails server:
+```
+rails s
+```
+Now visit [http://localhost:3000](http://localhost:3000) in your browser to see the application in action.
+
+
+
 
 
