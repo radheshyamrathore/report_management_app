@@ -1,0 +1,62 @@
+<div class="row">
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h2><%= @report.title %></h2>
+        <span class="badge bg-<%= @report.status == 'published' ? 'success' : @report.status == 'draft' ? 'warning' : 'secondary' %> fs-6">
+          <%= @report.status.titleize %>
+        </span>
+      </div>
+      <div class="card-body">
+        <% if @report.logo.attached? %>
+          <div class="mb-3">
+            <%= image_tag @report.logo, alt: "Report Logo", class: "img-fluid rounded" %>
+          </div>
+        <% end %>
+        
+        <div class="mb-3">
+          <strong>Category:</strong> <%= @report.category %>
+        </div>
+        
+        <div class="mb-3">
+          <strong>Description:</strong>
+          <div class="mt-2">
+            <%= simple_format(@report.description) %>
+          </div>
+        </div>
+        
+        <% if @report.published_on %>
+          <div class="mb-3">
+            <strong>Published On:</strong> <%= @report.published_on.strftime("%B %d, %Y") %>
+          </div>
+        <% end %>
+        
+        <div class="mb-3">
+          <strong>Author:</strong> <%= @report.user.full_name %>
+        </div>
+        
+        <div class="mb-3">
+          <strong>Created:</strong> <%= @report.created_at.strftime("%B %d, %Y at %I:%M %p") %>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="col-md-4">
+    <div class="card">
+      <div class="card-header">
+        <h5>Actions</h5>
+      </div>
+      <div class="card-body">
+        <% if current_user.admin? || @report.user == current_user %>
+          <%= link_to "Edit Report", edit_report_path(@report), class: "btn btn-primary btn-sm w-100 mb-2" %>
+          <%= form_with url: report_path(@report), method: :delete, data: { confirm: "Are you sure?" }, class: "mb-2" do %>
+            <%= submit_tag "Delete", class: "btn btn-sm btn-outline-danger w-100" %>
+          <% end %>
+        <% end %>
+
+        <%= link_to "Back to Reports", reports_path, class: "btn btn-secondary btn-sm w-100" %>
+      </div>
+    </div>
+  </div>
+</div>

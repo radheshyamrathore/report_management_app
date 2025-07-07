@@ -1,0 +1,82 @@
+<%= form_with model: report, local: true, multipart: true, class: "row g-3", id: "report-form" do |form| %>
+  <% if report.errors.any? %>
+    <div class="col-12">
+      <div class="alert alert-danger">
+        <h4><%= pluralize(report.errors.count, "error") %> prohibited this report from being saved:</h4>
+        <ul class="mb-0">
+          <% report.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="col-md-6">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :category, class: "form-label" %>
+    <%= form.select :category, options_for_select(Report::CATEGORIES.map { |cat| [cat, cat] }, report.category), 
+                   { prompt: 'Select Category' }, { class: "form-select" } %>
+  </div>
+
+  <div class="col-12">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 6, id: "description-field" %>
+    <div class="form-text">
+      Character count: <span id="char-count">0</span>
+    </div>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :status, class: "form-label" %>
+    <%= form.select :status, [['Draft', 'draft'], ['Published', 'published'], ['Archived', 'archived']], 
+                   { selected: report.status }, { class: "form-select" } %>
+  </div>
+
+  <div class="col-md-6">
+    <%= form.label :published_on, class: "form-label" %>
+    <%= form.date_field :published_on, class: "form-control" %>
+  </div>
+
+<div class="col-12">
+  <%= form.label :logo, class: "form-label" %>
+  <%= form.file_field :logo, class: "form-control", accept: "image/*" %>
+
+  <% if report.persisted? && report.logo.attached? %>
+    <div class="mt-2">
+      <%= image_tag report.logo, alt: "Report Logo", class: "img-thumbnail", style: "max-width: 200px;" %>
+    </div>
+  <% end %>
+</div>
+
+  <div class="col-12">
+    <%= form.submit class: "btn btn-primary" %>
+    <%= link_to "Cancel", reports_path, class: "btn btn-secondary" %>
+  </div>
+<% end %>
+
+<script>
+$(document).ready(function() {
+  // Character counter
+  const descriptionField = $('#description-field');
+  const charCount = $('#char-count');
+  
+  function updateCharCount() {
+    const count = descriptionField.val().length;
+    charCount.text(count);
+  }
+  
+  descriptionField.on('input', updateCharCount);
+  updateCharCount(); // Initial count
+  
+  // AJAX form submission (optional)
+  $('#report-form').on('submit', function(e) {
+    // Add loading state
+    $(this).find('input[type="submit"]').prop('disabled', true).val('Saving...');
+  });
+});
+</script>
