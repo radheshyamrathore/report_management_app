@@ -40,5 +40,12 @@ The app includes filtering and pagination functionality, allowing reports to be 
 #### 1. Clone the Repository:
 
 ```bash
-git clone https://github.com/your-username/market_report_app.git
-cd market_report_app
+git clone https://github.com/radheshyamrathore/report_management_app.git
+cd report_management_app
+
+#### 1. Clone the Repository:
+
+```bash
+#### 1. Install Ruby And Rails Dependencies:
+
+bundle install
