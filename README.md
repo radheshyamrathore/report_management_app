@@ -20,3 +20,47 @@ The app includes filtering and pagination functionality, allowing reports to be 
 * Deployment instructions
 
 * ...
+
+# MarketReportApp
+
+MarketReportApp is an internal system built using Ruby on Rails 5.2.8 to manage market research reports. It helps users securely create, manage, and publish research reports with rich descriptions, category-based filters, and publishing logs. The app supports admin and regular users, background jobs, file uploads, and a responsive frontend.
+
+## Features
+
+- **User Authentication:** Secure login using Devise for admin and regular users.
+- **Report Management:** Create, view, edit, and delete reports with title, description, category, status, and logo upload.
+- **Role-Based Access:** Regular users manage their own reports; admins manage all reports.
+- **File Upload:** Upload logos with ActiveStorage or CarrierWave.
+- **Filtering & Pagination:** Filter reports by category/status and paginate using Kaminari or will_paginate.
+- **Rich Text Editing:** Use TinyMCE for HTML-enabled descriptions.
+- **Background Jobs:** Sidekiq logs published reports in background.
+- **AJAX Enhancements:** Character counter and optional AJAX form submission with jQuery.
+- **Responsive UI:** Clean design with Bootstrap 5.
+
+## Technologies Used
+
+- **Ruby on Rails 5.2.8:** Backend framework
+- **Devise:** For authentication
+- **Sidekiq:** For background jobs
+- **ActiveStorage / CarrierWave:** For uploading report logos
+- **Kaminari / will_paginate:** For paginating report lists
+- **TinyMCE:** For HTML editing
+- **Bootstrap 5:** For responsive layout
+- **jQuery:** For frontend interactions
+
+## Installation
+
+### Prerequisites
+
+- Ruby (version 2.6.8)
+- Rails (version 5.2.8)
+- PostgreSQL
+- Node.js and Yarn
+
+### Steps to Set Up
+
+#### 1. Clone the Repository:
+
+```bash
+git clone https://github.com/your-username/market_report_app.git
+cd market_report_app
